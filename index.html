@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Cell NITA | Ignite 2.0 - Winter Archive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=EB+Garamond:ital,wght@0,400;0,800;1,400&family=Inter:wght@100;300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-obsidian: #010103;
+            --stranger-red: #ff1a1a;
+            --ice-cyan: #a5f3fc;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-obsidian);
+            color: #ffffff;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        .font-horror { font-family: 'EB Garamond', serif; }
+        .font-orbitron { font-family: 'Orbitron', sans-serif; }
+
+        .grain::after {
+            content: "";
+            position: fixed;
+            top: -100%; left: -100%; width: 300%; height: 300%;
+            background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .stranger-glow {
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255,26,26,0.8), 0 0 20px rgba(255,26,26,0.4);
+        }
+
+        .glass-ice {
+            background: rgba(165, 243, 252, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(165, 243, 252, 0.1);
+            box-shadow: inset 0 0 20px rgba(165, 243, 252, 0.05);
+            transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            transform-style: preserve-3d;
+        }
+
+        .snow-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        .snowflake {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.5;
+            pointer-events: none;
+            animation: snowfall linear infinite;
+        }
+
+        @keyframes snowfall {
+            0% { transform: translateY(-10vh) translateX(0) scale(0); opacity: 0; }
+            10% { opacity: 0.6; scale: 1;}
+            90% { opacity: 0.6; }
+            100% { transform: translateY(110vh) translateX(20px) scale(0.5); opacity: 0; }
+        }
+
+        .scanlines::after {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.05) 50%);
+            z-index: 98;
+            background-size: 100% 4px;
+            pointer-events: none;
+            opacity: 0.3;
+        }
+
+        .glow-cursor {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(165,243,252,0.05) 0%, transparent 70%);
+            position: fixed;
+            pointer-events: none;
+            z-index: 1;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body class="grain scanlines">
+    <div class="glow-cursor" id="cursor-glow"></div>
+    <div class="snow-overlay" id="snow-container"></div>
+
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+    <script>
+        const container = document.getElementById('snow-container');
+        const snowflakeCount = 80;
+        for (let i = 0; i < snowflakeCount; i++) {
+            const snowflake = document.createElement('div');
+            snowflake.className = 'snowflake';
+            const size = Math.random() * 3 + 1;
+            const left = Math.random() * 100;
+            const duration = Math.random() * 10 + 8;
+            const delay = Math.random() * 20;
+            snowflake.style.width = `${size}px`;
+            snowflake.style.height = `${size}px`;
+            snowflake.style.left = `${left}vw`;
+            snowflake.style.animationDuration = `${duration}s`;
+            snowflake.style.animationDelay = `-${delay}s`;
+            container.appendChild(snowflake);
+        }
+
+        const cursor = document.getElementById('cursor-glow');
+        window.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+    </script>
+</body>
+</html>
