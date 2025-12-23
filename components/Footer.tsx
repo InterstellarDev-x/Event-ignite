@@ -19,17 +19,16 @@ const Footer: React.FC = () => {
             <div className="space-y-6">
               <h4 className="text-[10px] font-orbitron text-white tracking-[0.4em] uppercase font-black">Socials</h4>
               <ul className="space-y-4 text-xs font-orbitron tracking-widest text-zinc-500">
-                <li><a href="#" className="hover:text-white transition-colors">INSTAGRAM</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">LINKEDIN</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">X / TWITTER</a></li>
+                <li><a href="https://www.instagram.com/ecellnita" className="hover:text-white transition-colors">INSTAGRAM</a></li>
+                <li><a href="https://in.linkedin.com/company/ecellnita" className="hover:text-white transition-colors">LINKEDIN</a></li>
+
               </ul>
             </div>
             <div className="space-y-6">
               <h4 className="text-[10px] font-orbitron text-white tracking-[0.4em] uppercase font-black">Resources</h4>
               <ul className="space-y-4 text-xs font-orbitron tracking-widest text-zinc-500">
                 <li><a href="https://unstop.com" className="hover:text-white transition-colors">UNSTOP LINK</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">RULEBOOK</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">RESOURCES</a></li>
+
               </ul>
             </div>
           </div>

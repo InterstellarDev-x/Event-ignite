@@ -10,6 +10,9 @@ const OctahedronGeometry = 'octahedronGeometry' as any;
 const MeshBasicMaterial = 'meshBasicMaterial' as any;
 const AmbientLight = 'ambientLight' as any;
 const PointLight = 'pointLight' as any;
+const BoxGeometry = 'boxGeometry' as any;
+const MeshStandardMaterial = 'meshStandardMaterial' as any;
+const Color = 'color' as any;
 
 const SnowParticles = ({ count = 1000 }) => {
   const points = useMemo(() => {
@@ -92,10 +95,15 @@ const CountdownTimer: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
-    const targetDate = new Date('2024-12-26T23:59:59').getTime();
+    const targetDate = new Date('2025-12-26T23:59:59').getTime();
+    console.log("target date : " , targetDate);
+
+    
     const interval = setInterval(() => {
       const now = new Date().getTime();
+      console.log("now: " , now);
       const distance = targetDate - now;
+      console.log("distance" , distance);
       if (distance < 0) { clearInterval(interval); return; }
       setTimeLeft({
         days: Math.floor(distance / (1000 * 60 * 60 * 24)),
@@ -103,6 +111,7 @@ const CountdownTimer: React.FC = () => {
         minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
         seconds: Math.floor((distance % (1000 * 60)) / 1000),
       });
+      console.log("timeleft  : "  , timeLeft);
     }, 1000);
     return () => clearInterval(interval);
   }, []);
@@ -131,12 +140,7 @@ const CountdownTimer: React.FC = () => {
 const Hero: React.FC = () => {
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center pt-32 pb-20 px-6">
-      {/* 3D Scene Layer */}
-      <div className="absolute inset-0 z-0 opacity-60">
-        <Canvas camera={{ position: [0, 0, 5], fov: 45 }} dpr={[1, 2]}>
-          <Scene />
-        </Canvas>
-      </div>
+     
 
       <div className="relative z-10 text-center max-w-6xl mx-auto space-y-12 pointer-events-none">
         <div className="flex flex-col items-center space-y-4 pointer-events-auto">
